@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Art/Anya New/002.png" type="Texture" id=1]
+[ext_resource path="res://Art/Anya New/001.png" type="Texture" id=2]
+[ext_resource path="res://Art/Anya New/000.png" type="Texture" id=3]
+[ext_resource path="res://Art/Anya/Player.gd" type="Script" id=4]
+[ext_resource path="res://Dash.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Art/Anya New/003.png" type="Texture" id=6]
+[ext_resource path="res://Art/Anya New/004.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 57, 107.5 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Dash",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Run",
+"speed": 12.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3, 5 )
+shape = SubResource( 6 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -5.96046e-08, -6 )
+scale = Vector2( 0.398571, 0.398571 )
+frames = SubResource( 2 )
+animation = "Fall"
+
+[node name="Dash" parent="." instance=ExtResource( 5 )]
